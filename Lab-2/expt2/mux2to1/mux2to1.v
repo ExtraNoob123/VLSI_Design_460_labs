@@ -1,0 +1,13 @@
+module mux2to1(w, S, f);
+	input S;
+	input[1:0]w;
+	output reg f;
+	
+	always @(w, S)//always@(*)
+	begin
+	if(S == 0)
+		f = w[0];
+	else
+		f = w[1];
+	end
+endmodule

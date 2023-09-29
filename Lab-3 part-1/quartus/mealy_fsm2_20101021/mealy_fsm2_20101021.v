@@ -1,0 +1,94 @@
+module mealy_fsm2_20101021(w, clk, reset, z);
+
+	input w, clk, reset;
+	output reg z;
+	
+	reg [2:0] present_state, next_state;
+	
+	parameter S0 = 3'b000, S1 = 3'b001, S2 = 3'b010, S3 = 3'b011, S4 = 3'b100, S5 = 3'b101;
+	
+	// state transition logic
+	always @(posedge clk, posedge reset)
+	begin
+		if (reset == 1)
+		begin
+			present_state = S0;
+			next_state = S0;
+			z = 0;
+		end
+		else
+		begin
+			present_state = next_state;
+			// next state estimation logic
+			case(present_state)
+				S0:
+				if (w == 0)
+				begin
+					next_state = S0;
+					z = 0;
+				end
+				else
+				begin
+					next_state = S1;
+					z = 0;
+				end
+				S1:
+				if (w == 0)
+				begin
+					next_state = S4;
+					z = 0;
+				end
+				else
+				begin
+					next_state = S2;
+					z = 0;
+				end
+				S2:
+				if (w == 0)
+				begin
+					next_state = S4;
+					z = 0;
+				end
+				else
+				begin
+					next_state = S3;
+					z = 0;
+				end
+
+				S3:
+				if (w == 0)
+				begin
+					next_state = S4;
+					z = 0;
+				end
+				else
+				begin
+					next_state = S3;
+					z = 1;
+				end
+				S4:
+				if (w == 0)
+				begin
+					next_state = S5;
+					z = 0;
+				end
+				else
+				begin
+					next_state = S1;
+					z = 0;
+				end
+				S5:
+				if (w == 0)
+				begin
+					next_state = S0;
+					z = 0;
+				end
+				else
+				begin
+					next_state = S1;
+					z = 1;
+				end
+			endcase
+		end
+	end
+endmodule
