@@ -1,0 +1,7 @@
+|and_20101021
+a => WideAnd0.IN0
+b => WideAnd0.IN1
+c => WideAnd0.IN2
+y <= WideAnd0.DB_MAX_OUTPUT_PORT_TYPE
+
+
