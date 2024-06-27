@@ -1,0 +1,7 @@
+|or_20101021
+a => WideOr0.IN0
+b => WideOr0.IN1
+c => WideOr0.IN2
+y <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
